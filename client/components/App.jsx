@@ -1,8 +1,8 @@
 import React from "react";
-import { render } from "react-dom";
 
 class App extends React.Component {
   render() {
+    console.log("Rendering app");
     return (
       <div>
         <h1>App Component</h1>
