@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 class Preview extends React.Component {
   render() {
+    console.log(this.props.previewText);
     return (
       <div>
         <h1>Preview Component</h1>
@@ -14,7 +15,7 @@ class Preview extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    previewText: state.previewText,
+    previewText: state.reducer.previewText,
   };
 };
 

@@ -9,6 +9,4 @@ const store = createStore(
   // composeWithDevTools(applyMiddleware(thunk)),
 );
 
-// store.dispatch(loadMarkets());
-
 export default store;

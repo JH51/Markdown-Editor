@@ -2,18 +2,27 @@ import React from "react";
 import Editor from "./Editor.jsx";
 import Preview from "./Preview.jsx";
 import '../styles/EditorContainer.scss';
+import { connect } from "react-redux";
 
 class EditorContainer extends React.Component {
   render() {
+    console.log('EDITORCONTAINER:',this.props)
     return (
       <div id="react-editor-container">
         {/* <h1>Editor Container</h1> */}
-        <Editor />
+        <Editor editorText={this.props.editorText} />
         <div id="arrow">&rarr;</div>
-        <Preview />
+        <Preview previewText={this.props.previewText} />
       </div>
     );
   }
 }
 
-export default EditorContainer;
+const mapStateToProps = (state) => {
+  return {
+    editorText: state.reducer.editorText,
+    previewText: state.reducer.previewText,
+  };
+};
+
+export default connect(mapStateToProps, null)(EditorContainer);

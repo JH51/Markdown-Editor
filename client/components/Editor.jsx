@@ -3,6 +3,11 @@ import storeEditorTextActionCreator from "../actions.js";
 import { connect } from "react-redux";
 
 class Editor extends React.Component {
+
+  // constructor(props) {
+  //   super(props);
+  // }
+
   render() {
     return (
       <div>
@@ -11,13 +16,20 @@ class Editor extends React.Component {
           id="editor-text"
           onChange={() => {
             this.props.storeEditorText(document.getElementById("editor-text").value);
-            // console.log("Editor text changed");
+            console.log(this.props);
           }}
+          value={this.props.editorText}
         ></textarea>
       </div>
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    editorText: state.reducer.editorText,
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
