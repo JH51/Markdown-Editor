@@ -1,6 +1,8 @@
- export const ADD_CARD = 'ADD_CARD';
- 
- export const updateLocation = (data) => ({
-   type: types.UPDATE_LOCATION,
-   payload: data,
- });
+export default function storeEditorTextActionCreator(text) {
+  return {
+    type: "STORE_EDITOR_TEXT",
+    payload: {
+      text,
+    },
+  };
+};
