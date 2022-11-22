@@ -9,11 +9,10 @@ const path = require("path");
 //   res.sendFile(path.resolve(__dirname, "../build/bundle.html"));
 // });
 
-app.use('/build', express.static(path.join(__dirname, '../build')));
-  // serve index.html on the route '/'
-  app.get('/', (req, res) => {
-    return res.status(200).sendFile(path.join(__dirname, '../build/bundle.html'));
-  });
+app.get("/", (req, res) => {
+  return res.status(200).sendFile(path.join(__dirname, "../build/bundle.html"));
+});
+app.use("/build", express.static(path.join(__dirname, "../build/bundle.html")));
 
 app.listen(3000, () => {
   console.log("Listening on port 3000");

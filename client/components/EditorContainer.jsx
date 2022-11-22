@@ -6,7 +6,6 @@ import { connect } from "react-redux";
 
 class EditorContainer extends React.Component {
   render() {
-    console.log('EDITORCONTAINER:',this.props)
     return (
       <div id="react-editor-container">
         {/* <h1>Editor Container</h1> */}

@@ -3,23 +3,25 @@ import storeEditorTextActionCreator from "../actions.js";
 import { connect } from "react-redux";
 
 class Editor extends React.Component {
-
-  // constructor(props) {
-  //   super(props);
-  // }
-
   render() {
+    const textarea = (
+      <textarea
+        id="editor-text"
+        placeholder="# Header 1"
+        value={this.props.editorText}
+        rows={this.props.editorText.split('\n').length}
+        onChange={() => {
+          this.props.storeEditorText(
+            document.getElementById("editor-text").value
+          );
+        }}
+        autoFocus={true}
+      ></textarea>
+    );
     return (
       <div>
-        <h1>Editor Component</h1>
-        <textarea
-          id="editor-text"
-          onChange={() => {
-            this.props.storeEditorText(document.getElementById("editor-text").value);
-            console.log(this.props);
-          }}
-          value={this.props.editorText}
-        ></textarea>
+        {/* <h1>Editor Component</h1> */}
+        {textarea}
       </div>
     );
   }

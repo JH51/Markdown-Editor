@@ -1,9 +1,10 @@
 //  import * as types from '../constants/actionTypes';
 import { combineReducers } from "redux";
+import convertMarkdownToHTML from "./helpers.js";
 
 const initialState = {
-  editorText: "#DEFAULT EDITOR TEXT",
-  previewText: "DEFAULT PREVIEW TEXT",
+  editorText: "",
+  previewText: "Type in the editor pane to begin...",
   username: "",
   authToken: "",
 };
@@ -11,11 +12,10 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "STORE_EDITOR_TEXT": {
-      // console.log(action.payload);
       return {
         ...state,
         editorText: action.payload,
-        previewText: action.payload,
+        previewText: convertMarkdownToHTML(action.payload),
       };
     }
 
