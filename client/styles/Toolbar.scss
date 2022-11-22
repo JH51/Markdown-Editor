@@ -1,0 +1,10 @@
+.toolbar {
+  display: flex;
+  flex-direction: row;
+}
+
+.toolbar-item button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
