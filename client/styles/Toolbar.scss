@@ -1,4 +1,5 @@
-.toolbar {
+#toolbar {
+  position: sticky !important;;
   display: flex;
   flex-direction: row;
 }
