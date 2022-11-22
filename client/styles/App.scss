@@ -1,10 +1,12 @@
 #header-components {
   position: sticky !important;
   top: 0;
+  margin-top: -40px;
+  margin-bottom: 40px;
   left: 0;
+  margin-left: -8px;
   padding: 10 20 20 20;
   background-color: white;
   width: 100%;
-  // border-bottom: 1px black solid;
-  box-shadow: 0px 0px 4px 4px black;
+  box-shadow: 0px 0px 16px 4px rgba(0,0,0,0.2);
 }

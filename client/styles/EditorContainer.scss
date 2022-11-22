@@ -1,11 +1,7 @@
 #react-editor-container {
-  margin-top: 60px;
-}
-#react-editor-container * {
-  font-size: 1.25vw;
-}
-
-#react-editor-container {
+  * {
+    font-size: 1.25vw;
+  }
   display: flex;
   flex-direction: row;
   width: 100%;
