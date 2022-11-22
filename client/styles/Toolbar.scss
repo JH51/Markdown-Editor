@@ -1,11 +1,12 @@
 #toolbar {
-  position: sticky !important;;
+  position: sticky !important;
   width: 100%;
   display: flex;
   flex-direction: row;
   gap: 10px;
   .toolbar-item {
     button {
+      font-family: Verdana;
       font-size: 12px;
       padding: 0px 8px;
       height: 28px;
