@@ -14,11 +14,13 @@ api.get(
   // },
   apiController.getReadMe,
   (req, res) => {
+    const { user, repo, branch, filename, url, mdText } = res.locals;
+    console.log(user,repo,branch,filename,url);
     res
       .status(200)
       .header("content-type", "plain/text")
-      .header("Access-Control-Allow-Origin", "*");
-    res.send(res.locals.mdText);
+      .header("Access-Control-Allow-Origin", "*")
+      .json({ user, repo, branch, filename, mdText });
     return;
   }
 );

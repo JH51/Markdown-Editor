@@ -7,12 +7,43 @@ const SERVER_URL = "http://localhost:3000";
 const initialState = {
   editorText: "",
   previewText: "",
-  username: "",
   authToken: "",
+  user: "",
+  repo: "",
+  branch: "",
+  filename: "",
+  url: "local"
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+
+    case "FETCH_README": {
+      fetch(`${SERVER_URL}/api`, {
+        method: "GET",
+      })
+        .then((response) => {
+          return response.json();
+        })
+        .then((responseJson, dispatch) => {
+          document.getElementById("editor-text").value = responseJson.mdText;
+          return {
+            ...state,
+            user: responseJson.user,
+            repo: responseJson.repo,
+            branch: responseJson.branch,
+            filename: responseJson.filename,
+            editorText: responseJson.mdText,
+            previewText: convertMarkdownToHTML(responseJson.mdText),
+          };
+        })
+        .catch((err) => {
+          return {
+            type: "ERROR",
+          };
+        });
+    }
+
     case "STORE_EDITOR_TEXT": {
       return {
         ...state,
@@ -21,26 +52,9 @@ const reducer = (state = initialState, action) => {
       };
     }
 
-    case "FETCH_README": {
-      fetch(`${SERVER_URL}/api`, {
-        method: "GET",
-      })
-        .then((response) => {
-          return response.text();
-        })
-        .then((responseText) => {
-          document.getElementById('editor-text').value = responseText;
-          return {
-            ...state,
-            editorText: responseText,
-            previewText: responseText,
-          };
-        })
-        .catch((err) => {
-          return {
-            type: "ERROR",
-          };
-        });
+    case "UPDATE_HEADER": {
+      document.getElementById("src-repo").removeAttribute("hidden");
+      return state;
     }
 
     default:

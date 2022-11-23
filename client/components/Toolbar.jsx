@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import {
   fetchReadMeActionCreator,
   storeEditorTextActionCreator,
+  updateHeaderActionCreator,
 } from "../actions.js";
 import "../styles/Toolbar.scss";
 const fileSaver = require("file-saver");
@@ -166,12 +167,14 @@ class Toolbar extends React.Component {
             <u>&darr;</u>
           </button>
         </div>
-        <div id="fetch-page-button" className="toolbar-item">
+        <div id="fetch-readme-button" className="toolbar-item">
           <button
             title="Fetch README.md from GitHub"
             onClick={() => {
               console.log("Fetch");
               this.props.fetchReadMe();
+              setTimeout(this.props.storeEditorText, 500);
+              setTimeout(this.props.updateHeader, 500);
             }}
           >
             <svg
@@ -199,6 +202,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchReadMe: () => dispatch(fetchReadMeActionCreator()),
     storeEditorText: () => dispatch(storeEditorTextActionCreator()),
+    updateHeader: () => dispatch(updateHeaderActionCreator()),
   };
 };
 

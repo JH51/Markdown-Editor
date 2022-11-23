@@ -7,6 +7,7 @@ const apiController = {
       branch = "main",
       filename = "README.md";
     const url = `https://raw.githubusercontent.com/${user}/${repo}/${branch}/${filename}`;
+    Object.assign(res.locals, { user, repo, branch, filename, url });
     // console.log(url);
     fetch(url, {
       method: "GET",
