@@ -28,7 +28,10 @@ class Toolbar extends React.Component {
               editorTextArea.value += "** **";
               this.props.storeEditorText();
               editorTextArea.focus();
-              editorTextArea.setSelectionRange(editorTextArea.selectionStart - 3, editorTextArea.selectionEnd - 2);
+              editorTextArea.setSelectionRange(
+                editorTextArea.selectionStart - 3,
+                editorTextArea.selectionEnd - 2
+              );
             }}
           >
             <strong>B</strong>
@@ -42,7 +45,10 @@ class Toolbar extends React.Component {
               editorTextArea.value += "* *";
               this.props.storeEditorText();
               editorTextArea.focus();
-              editorTextArea.setSelectionRange(editorTextArea.selectionStart - 2, editorTextArea.selectionEnd - 1);
+              editorTextArea.setSelectionRange(
+                editorTextArea.selectionStart - 2,
+                editorTextArea.selectionEnd - 1
+              );
             }}
           >
             <em>I</em>
@@ -67,9 +73,13 @@ class Toolbar extends React.Component {
             title="Quote"
             onClick={() => {
               const editorTextArea = document.getElementById("editor-text");
-              editorTextArea.value += "> ";
+              editorTextArea.value += ">  ";
               this.props.storeEditorText();
               editorTextArea.focus();
+              editorTextArea.setSelectionRange(
+                editorTextArea.selectionStart - 1,
+                editorTextArea.selectionEnd
+              );
             }}
           >
             &#8221;
@@ -79,18 +89,38 @@ class Toolbar extends React.Component {
           <button title="Numbered List">1.&#x2013;</button>
         </div>
         <div className="toolbar-item">
-          <button title="Bulleted List"
-          onClick={() => {
-            const editorTextArea = document.getElementById("editor-text");
-            editorTextArea.value += "\n*  ";
-            this.props.storeEditorText();
-            editorTextArea.focus();
-            editorTextArea.setSelectionRange(editorTextArea.selectionStart - 1, editorTextArea.selectionEnd);
-          }}
-          >&#x2022;&#x2013;</button>
+          <button
+            title="Bulleted List"
+            onClick={() => {
+              const editorTextArea = document.getElementById("editor-text");
+              editorTextArea.value += "\n*  ";
+              this.props.storeEditorText();
+              editorTextArea.focus();
+              editorTextArea.setSelectionRange(
+                editorTextArea.selectionStart - 1,
+                editorTextArea.selectionEnd
+              );
+            }}
+          >
+            &#x2022;&#x2013;
+          </button>
         </div>
         <div className="toolbar-item">
-          <button title="Checkboxes">&#10003;&#x2013;</button>
+          <button
+            title="Checkboxes"
+            onClick={() => {
+              const editorTextArea = document.getElementById("editor-text");
+              editorTextArea.value += "\n- [ ]  ";
+              this.props.storeEditorText();
+              editorTextArea.focus();
+              editorTextArea.setSelectionRange(
+                editorTextArea.selectionStart - 1,
+                editorTextArea.selectionEnd
+              );
+            }}
+          >
+            &#10003;&#x2013;
+          </button>
         </div>
         <div className="toolbar-item">
           <button
@@ -100,8 +130,6 @@ class Toolbar extends React.Component {
               editorTextArea.value += "#";
               this.props.storeEditorText();
               editorTextArea.focus();
-              // editorTextArea.setSelectionRange(editorTextArea.selectionStart - 1, editorTextArea.selectionEnd);
-
             }}
           >
             <strong>
@@ -117,7 +145,10 @@ class Toolbar extends React.Component {
               editorTextArea.value += "` `";
               this.props.storeEditorText();
               editorTextArea.focus();
-              editorTextArea.setSelectionRange(editorTextArea.selectionStart - 2, editorTextArea.selectionEnd - 1);
+              editorTextArea.setSelectionRange(
+                editorTextArea.selectionStart - 2,
+                editorTextArea.selectionEnd - 1
+              );
             }}
           >
             &#60;&#62;
@@ -140,7 +171,7 @@ class Toolbar extends React.Component {
             title="Fetch README.md from GitHub"
             onClick={() => {
               console.log("Fetch");
-              this.props.fetchReadMe()
+              this.props.fetchReadMe();
             }}
           >
             <svg
