@@ -10,7 +10,15 @@ class Editor extends React.Component {
         id="editor-text"
         placeholder="# Header 1"
         value={this.props.editorText}
-        rows={this.props.editorText.split("\n").length + 1}
+        // rows={
+        //   this.props.editorText.split("\n").length +
+        //   Math.floor(this.props.editorText.split("\n").length / 2)
+        // }
+        style={{
+          height: document.getElementById("editor-text")
+            ? document.getElementById("editor-text").scrollHeight + "px"
+            : "auto",
+        }}
         onFocus={() => {
           let selectionStart =
             document.getElementById("editor-text").selectionStart;
@@ -18,7 +26,14 @@ class Editor extends React.Component {
             document.getElementById("editor-text").selectionEnd;
           console.log(selectionStart, selectionEnd);
         }}
-        onChange={this.props.storeEditorText}
+        onChange={() => {
+          this.props.storeEditorText();
+          this.style={
+            height: document.getElementById("editor-text")
+              ? document.getElementById("editor-text").scrollHeight + "px"
+              : "auto",
+          }
+        }}
         autoFocus={true}
       ></textarea>
     );
