@@ -207,11 +207,14 @@ class Toolbar extends React.Component {
   }
 }
 
-// const mapStateToProps = (state) => {
-//   return {
-
-//   }
-// }
+const mapStateToProps = (state) => {
+  return {
+    user: state.reducer.user,
+    repo: state.reducer.repo,
+    branch: state.reducer.branch,
+    filename: state.reducer.filename,
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -222,4 +225,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(Toolbar);
+export default connect(mapStateToProps, mapDispatchToProps)(Toolbar);

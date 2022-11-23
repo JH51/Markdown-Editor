@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { updateQueriesActionCreator } from '../actions.js';
+import { fetchReadMeActionCreator, updateQueriesActionCreator } from "../actions.js";
 import "../styles/FetchWindow.scss";
 
 class FetchWindow extends React.Component {
@@ -10,10 +10,7 @@ class FetchWindow extends React.Component {
         <div id="fetch-popup">
           {/* <h1>THIS IS THE FETCH POPUP</h1> */}
           <div id="input-row">
-            <span id="input-domain">
-              http://raw.githubusercontent.com
-            </span>
-            /
+            <span id="input-domain">http://raw.githubusercontent.com</span>/
             <input
               id="input-user"
               type="text"
@@ -46,6 +43,10 @@ class FetchWindow extends React.Component {
             <button
               id="button-fetch"
               onClick={() => {
+                console.log("Fetch");
+                this.props.fetchReadMe();
+                setTimeout(this.props.storeEditorText, 500);
+                setTimeout(this.props.updateHeader, 500);
                 const overlay = document.getElementById("fetch-overlay");
                 overlay.style.opacity = "0";
                 overlay.style.visibility = "hidden";
@@ -72,6 +73,7 @@ class FetchWindow extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    fetchReadMe: () => dispatch(fetchReadMeActionCreator()),
     updateQueries: () => dispatch(updateQueriesActionCreator()),
   };
 };
