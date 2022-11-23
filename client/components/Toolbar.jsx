@@ -4,6 +4,7 @@ import {
   fetchReadMeActionCreator,
   storeEditorTextActionCreator,
   updateHeaderActionCreator,
+  redirectToGitHubOauthActionCreator,
 } from "../actions.js";
 import "../styles/Toolbar.scss";
 const fileSaver = require("file-saver");
@@ -187,6 +188,16 @@ class Toolbar extends React.Component {
             </svg>
           </button>
         </div>
+        <div id="github-login" className="toolbar-item">
+          <button
+            onClick={() => {
+              console.log("Fetch");
+              this.props.redirectToGitHubOath();
+            }}
+          >
+            Login with GitHub
+          </button>
+        </div>
       </div>
     );
   }
@@ -201,6 +212,7 @@ class Toolbar extends React.Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchReadMe: () => dispatch(fetchReadMeActionCreator()),
+    redirectToGitHubOath: () => dispatch(redirectToGitHubOauthActionCreator()),
     storeEditorText: () => dispatch(storeEditorTextActionCreator()),
     updateHeader: () => dispatch(updateHeaderActionCreator()),
   };

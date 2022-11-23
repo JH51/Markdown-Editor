@@ -4,6 +4,12 @@ export function fetchReadMeActionCreator() {
   };
 };
 
+export function redirectToGitHubOauthActionCreator() {
+  return {
+    type: "REDIRECT_TO_GITHUB_OAUTH",
+  };
+}
+
 export function storeEditorTextActionCreator() {
   const textArea = document.getElementById("editor-text");
   return {

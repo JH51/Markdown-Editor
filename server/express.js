@@ -16,6 +16,11 @@ app.get("/", (req, res) => {
 });
 app.use("/build", express.static(path.join(__dirname, "../build")));
 app.use("/api", apiRouter);
+app.get("/login/oauth/github", (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*")
+  res.redirect(`https://github.com/login/oauth/authorize?client_id=31454bd3dc477f096177`);
+})
+
 
 app.listen(3000, () => {
   console.log("Listening on port 3000");

@@ -2,30 +2,28 @@
 import { combineReducers } from "redux";
 import convertMarkdownToHTML from "./helpers.js";
 const SERVER_URL = "http://localhost:3000";
-// const SERVER_URL = require('../server/express.js');
 
 const initialState = {
   editorText: "",
   previewText: "",
   authToken: "",
-  user: "",
-  repo: "",
-  branch: "",
-  filename: "",
-  url: "local"
+  user: "JH51",
+  repo: "SampleRepo",
+  branch: "main",
+  filename: "README.md",
+  url: "http://raw.githubusercontent.com/JH51/SampleRepo/main/README.md",
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-
     case "FETCH_README": {
-      fetch(`${SERVER_URL}/api`, {
+      fetch(`http://localhost:3000/api`, {
         method: "GET",
       })
         .then((response) => {
           return response.json();
         })
-        .then((responseJson, dispatch) => {
+        .then((responseJson) => {
           document.getElementById("editor-text").value = responseJson.mdText;
           return {
             ...state,
@@ -38,10 +36,20 @@ const reducer = (state = initialState, action) => {
           };
         })
         .catch((err) => {
-          return {
-            type: "ERROR",
-          };
+          console.log(err);
+          return state;
         });
+    }
+
+    case "REDIRECT_TO_GITHUB_OAUTH": {
+      fetch("http://localhost:3000/login/oauth/github", {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+        },
+        mode: "no-cors",
+        redirect: "follow",
+      });
+      return state;
     }
 
     case "STORE_EDITOR_TEXT": {

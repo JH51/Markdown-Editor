@@ -1,6 +1,6 @@
 const apiController = {
   getReadMe: function (req, res, next) {
-    // console.log(req.body);
+    console.log(req.body);
     // const { user, repo, branch, filename } = req.body;
     const user = "JH51",
       repo = "SampleRepo",
