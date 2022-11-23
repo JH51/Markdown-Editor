@@ -1,14 +1,10 @@
 const apiController = {
   getReadMe: function (req, res, next) {
-    console.log(req.body);
-    // const { user, repo, branch, filename } = req.body;
-    const user = "JH51",
-      repo = "SampleRepo",
-      branch = "main",
-      filename = "README.md";
+    const { user, repo, branch, filename } = req.query;
+    // console.log({ user, repo, branch, filename })
     const url = `https://raw.githubusercontent.com/${user}/${repo}/${branch}/${filename}`;
+    console.log(url);
     Object.assign(res.locals, { user, repo, branch, filename, url });
-    // console.log(url);
     fetch(url, {
       method: "GET",
     })

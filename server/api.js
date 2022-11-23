@@ -10,6 +10,7 @@ api.get(
   // (req, res, next) => {
   //   console.log('Request Made to /api');
   //   console.log(req.body);
+  //   console.log('PARAMS:',req.query);
   //   return next();
   // },
   apiController.getReadMe,

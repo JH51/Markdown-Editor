@@ -7,17 +7,16 @@ const initialState = {
   editorText: "",
   previewText: "",
   authToken: "",
-  user: "JH51",
-  repo: "SampleRepo",
-  branch: "main",
+  user: "",
+  repo: "",
+  branch: "",
   filename: "README.md",
-  url: "http://raw.githubusercontent.com/JH51/SampleRepo/main/README.md",
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "FETCH_README": {
-      fetch(`http://localhost:3000/api`, {
+      fetch(`http://localhost:3000/api?user=${"JH51"}&repo=${"SampleRepo"}&branch=${"main"}&filename=${"README.md"}`, {
         method: "GET",
       })
         .then((response) => {
@@ -27,10 +26,10 @@ const reducer = (state = initialState, action) => {
           document.getElementById("editor-text").value = responseJson.mdText;
           return {
             ...state,
-            user: responseJson.user,
-            repo: responseJson.repo,
-            branch: responseJson.branch,
-            filename: responseJson.filename,
+            // user: responseJson.user,
+            // repo: responseJson.repo,
+            // branch: responseJson.branch,
+            // filename: responseJson.filename,
             editorText: responseJson.mdText,
             previewText: convertMarkdownToHTML(responseJson.mdText),
           };
