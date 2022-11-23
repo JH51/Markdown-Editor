@@ -64,6 +64,16 @@ const reducer = (state = initialState, action) => {
       return state;
     }
 
+    case "UPDATE_QUERIES": {
+      return {
+        ...state,
+        user: action.payload.user,
+        repo: action.payload.repo,
+        branch: action.payload.branch,
+        filename: action.payload.filename,
+      }
+    }
+
     default:
       return state;
   }

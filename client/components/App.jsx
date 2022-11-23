@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "./Header.jsx";
 import Toolbar from "./Toolbar.jsx";
+import FetchWindow from "./FetchWindow.jsx";
 import EditorContainer from "./EditorContainer.jsx";
 import styles from '../styles/App.scss';
 
@@ -14,6 +15,7 @@ class App extends React.Component {
           <Toolbar />
         </div>
         <EditorContainer />
+        <FetchWindow />
       </div>
     );
   }

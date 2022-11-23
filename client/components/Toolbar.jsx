@@ -172,10 +172,14 @@ class Toolbar extends React.Component {
           <button
             title="Fetch README.md from GitHub"
             onClick={() => {
-              console.log("Fetch");
-              this.props.fetchReadMe();
-              setTimeout(this.props.storeEditorText, 500);
-              setTimeout(this.props.updateHeader, 500);
+              const overlay = document.getElementById("fetch-overlay");
+              overlay.style.visibility = "visible";
+              overlay.style.opacity = 1;
+              // console.log(document.getElementById("fetch-overlay"));
+              // console.log("Fetch");
+              // this.props.fetchReadMe();
+              // setTimeout(this.props.storeEditorText, 500);
+              // setTimeout(this.props.updateHeader, 500);
             }}
           >
             <svg
