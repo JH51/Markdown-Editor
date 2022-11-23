@@ -25,10 +25,10 @@ class Toolbar extends React.Component {
             title="Bold"
             onClick={() => {
               const editorTextArea = document.getElementById("editor-text");
-              editorTextArea.value += "****";
+              editorTextArea.value += "** **";
               this.props.storeEditorText();
               editorTextArea.focus();
-              editorTextArea.selectionEnd -= 2;
+              editorTextArea.setSelectionRange(editorTextArea.selectionStart - 3, editorTextArea.selectionEnd - 2);
             }}
           >
             <strong>B</strong>
@@ -39,11 +39,10 @@ class Toolbar extends React.Component {
             title="Italicize"
             onClick={() => {
               const editorTextArea = document.getElementById("editor-text");
-              editorTextArea.value += "**";
+              editorTextArea.value += "* *";
               this.props.storeEditorText();
               editorTextArea.focus();
-              editorTextArea.selectionEnd -= 1;
-              // editorTextArea.dispatchEvent(new KeyboardEvent('keydown', {'key': 'a'}));
+              editorTextArea.setSelectionRange(editorTextArea.selectionStart - 2, editorTextArea.selectionEnd - 1);
             }}
           >
             <em>I</em>
@@ -80,7 +79,15 @@ class Toolbar extends React.Component {
           <button title="Numbered List">1.&#x2013;</button>
         </div>
         <div className="toolbar-item">
-          <button title="Bulleted List">&#x2022;&#x2013;</button>
+          <button title="Bulleted List"
+          onClick={() => {
+            const editorTextArea = document.getElementById("editor-text");
+            editorTextArea.value += "\n*  ";
+            this.props.storeEditorText();
+            editorTextArea.focus();
+            editorTextArea.setSelectionRange(editorTextArea.selectionStart - 1, editorTextArea.selectionEnd);
+          }}
+          >&#x2022;&#x2013;</button>
         </div>
         <div className="toolbar-item">
           <button title="Checkboxes">&#10003;&#x2013;</button>
@@ -93,6 +100,8 @@ class Toolbar extends React.Component {
               editorTextArea.value += "#";
               this.props.storeEditorText();
               editorTextArea.focus();
+              // editorTextArea.setSelectionRange(editorTextArea.selectionStart - 1, editorTextArea.selectionEnd);
+
             }}
           >
             <strong>
@@ -105,10 +114,10 @@ class Toolbar extends React.Component {
             title="Inline Code"
             onClick={() => {
               const editorTextArea = document.getElementById("editor-text");
-              editorTextArea.value += "``";
+              editorTextArea.value += "` `";
               this.props.storeEditorText();
               editorTextArea.focus();
-              editorTextArea.selectionEnd -= 1;
+              editorTextArea.setSelectionRange(editorTextArea.selectionStart - 2, editorTextArea.selectionEnd - 1);
             }}
           >
             &#60;&#62;
