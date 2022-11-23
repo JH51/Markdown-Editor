@@ -1,6 +1,8 @@
 //  import * as types from '../constants/actionTypes';
 import { combineReducers } from "redux";
 import convertMarkdownToHTML from "./helpers.js";
+const SERVER_URL = "http://localhost:3000";
+// const SERVER_URL = require('../server/express.js');
 
 const initialState = {
   editorText: "",
@@ -17,6 +19,28 @@ const reducer = (state = initialState, action) => {
         editorText: action.payload,
         previewText: convertMarkdownToHTML(action.payload),
       };
+    }
+
+    case "FETCH_README": {
+      fetch(`${SERVER_URL}/api`, {
+        method: "GET",
+      })
+        .then((response) => {
+          return response.text();
+        })
+        .then((responseText) => {
+          document.getElementById('editor-text').value = responseText;
+          return {
+            ...state,
+            editorText: responseText,
+            previewText: responseText,
+          };
+        })
+        .catch((err) => {
+          return {
+            type: "ERROR",
+          };
+        });
     }
 
     default:
