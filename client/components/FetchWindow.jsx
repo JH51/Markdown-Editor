@@ -4,6 +4,7 @@ import { fetchReadMeActionCreator, updateQueriesActionCreator } from "../actions
 import "../styles/FetchWindow.scss";
 
 class FetchWindow extends React.Component {
+
   render() {
     return (
       <div id="fetch-overlay">
@@ -45,8 +46,9 @@ class FetchWindow extends React.Component {
               onClick={() => {
                 console.log("Fetch");
                 this.props.fetchReadMe();
-                setTimeout(this.props.storeEditorText, 500);
-                setTimeout(this.props.updateHeader, 500);
+                // setTimeout(this.props.storeEditorText, 500);
+                // setTimeout(this.props.updateHeader, 500);
+                // this.props.storeEditorText()
                 const overlay = document.getElementById("fetch-overlay");
                 overlay.style.opacity = "0";
                 overlay.style.visibility = "hidden";
@@ -74,6 +76,8 @@ class FetchWindow extends React.Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchReadMe: () => dispatch(fetchReadMeActionCreator()),
+    storeEditorText: () => dispatch(storeEditorTextActionCreator()),
+    updateHeader: () => dispatch(updateHeaderActionCreator()),
     updateQueries: () => dispatch(updateQueriesActionCreator()),
   };
 };

@@ -16,9 +16,17 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "FETCH_README": {
-      fetch(`http://localhost:3000/api?user=${"JH51"}&repo=${"SampleRepo"}&branch=${"main"}&filename=${"README.md"}`, {
-        method: "GET",
-      })
+      const user = document.getElementById("input-user"),
+        repo = document.getElementById("input-repo"),
+        branch = document.getElementById("input-branch"),
+        filename = document.getElementById("input-filename");
+      console.log(state.reducer);
+      fetch(
+        `http://localhost:3000/api?user=${user.value}&repo=${repo.value}&branch=${branch.value}&filename=${filename.value}`,
+        {
+          method: "GET",
+        }
+      )
         .then((response) => {
           return response.json();
         })
@@ -71,7 +79,7 @@ const reducer = (state = initialState, action) => {
         repo: action.payload.repo,
         branch: action.payload.branch,
         filename: action.payload.filename,
-      }
+      };
     }
 
     default:

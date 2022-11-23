@@ -32,6 +32,33 @@
   top: calc(50% - 100px);
   left: calc(50% - 200px);
 
+  #input-row {
+
+    &, & * {
+      font-family: sans-serif;
+      font-size: 12px;
+    }
+    border: 0.5px solid #CCC;
+    padding: 6px;
+    border-radius: 4px;
+    align-items: center;
+    #input-domain {
+      font-family: sans-serif;
+      font-size: 12px;
+    }
+    font-size: 12px;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    input, input:active, input:focus {
+      outline: none;
+      width: 0px;
+      border: none;
+      border-radius: 4px;
+      cursor: text;
+    }
+  }
+
   #button-row {
     align-self: flex-end;
     display: flex;
@@ -50,26 +77,6 @@
         color: white;
         background-color: green;
       }
-    }
-  }
-  
-  
-  #input-row {
-    outline: none;
-    align-items: center;
-    #input-domain {
-      font-family: sans-serif;
-      font-size: 12px;
-    }
-    font-size: 12px;
-    display: flex;
-    flex-direction: row;
-    justify-content: end;
-    input {
-      width: 50px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
     }
   }
 
