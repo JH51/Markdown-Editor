@@ -14,6 +14,15 @@
     //   sans-serif;
   }
 
+  blockquote {
+    border-left: 4px solid #CCC;
+    color: rgb(87,96,106);
+    display: block;
+    line-height: 24px;
+    margin: 0;
+    padding-left: 10px;
+  }
+
   code {
     background-color: rgba(175, 184, 193, 0.2);
     border-radius: 6px;

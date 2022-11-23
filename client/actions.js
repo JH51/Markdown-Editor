@@ -1,7 +1,8 @@
-export function storeEditorTextActionCreator(text) {
+export function storeEditorTextActionCreator() {
+  const textArea = document.getElementById('editor-text');
   return {
     type: "STORE_EDITOR_TEXT",
-    payload: text
+    payload: textArea.value,
   };
 };
 

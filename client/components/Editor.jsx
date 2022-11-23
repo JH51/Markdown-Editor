@@ -1,7 +1,7 @@
 import React from "react";
 import { storeEditorTextActionCreator } from "../actions.js";
 import { connect } from "react-redux";
-import '../styles/Editor.scss';
+import "../styles/Editor.scss";
 
 class Editor extends React.Component {
   render() {
@@ -12,16 +12,13 @@ class Editor extends React.Component {
         value={this.props.editorText}
         rows={this.props.editorText.split("\n").length + 1}
         onFocus={() => {
-          let selectionStart = document.getElementById("editor-text").selectionStart;
-          let selectionEnd = document.getElementById("editor-text").selectionEnd;
+          let selectionStart =
+            document.getElementById("editor-text").selectionStart;
+          let selectionEnd =
+            document.getElementById("editor-text").selectionEnd;
           console.log(selectionStart, selectionEnd);
-
         }}
-        onChange={() => {
-          this.props.storeEditorText(
-            document.getElementById("editor-text").value
-          );
-        }}
+        onChange={this.props.storeEditorText}
         autoFocus={true}
       ></textarea>
     );
@@ -42,7 +39,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    storeEditorText: (text) => dispatch(storeEditorTextActionCreator(text)),
+    storeEditorText: () => dispatch(storeEditorTextActionCreator()),
   };
 };
 
