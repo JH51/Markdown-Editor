@@ -12,10 +12,10 @@ class Toolbar extends React.Component {
           <button title="Open File">&#128194;</button>
         </div>
         <div className="toolbar-item">
-          <button title="Undo">&#10558;</button>
+          <button title="Undo">&#8617;</button>
         </div>
         <div className="toolbar-item">
-          <button title="Redo">&#10559;</button>
+          <button title="Redo">&#8618;</button>
         </div>
         <div className="toolbar-item">
           <button

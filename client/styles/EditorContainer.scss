@@ -6,13 +6,17 @@
   align-self: center;
   margin: auto;
   width: calc(100% - 40px);
-  gap: 1.5vw;
+  gap: 1.25vw;
   align-items: top;
   div {
     flex: 1;
     height: fit-content;
   }
   div#arrow {
+    font-family: sans-serif;
+    color: #CCC;
+    font-size: 28px;
+    font-weight: 800;
     flex: 0;
     align-content: center;
     margin: auto;
