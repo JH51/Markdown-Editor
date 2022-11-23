@@ -6,7 +6,7 @@
   align-self: center;
   margin: auto;
   width: calc(100% - 40px);
-  gap: 2vw;
+  gap: 1.5vw;
   align-items: top;
   div {
     flex: 1;
@@ -31,7 +31,7 @@
 #editor-text,
 #preview-text {
   width: 100%;
-  font-size: min(18px, max(14px, 0.75vw));
+  font-size: min(16px, max(14px, 0.75vw));
   height: auto;
   border: none;
   resize: none;
