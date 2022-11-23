@@ -1,6 +1,7 @@
 import React from "react";
-import storeEditorTextActionCreator from "../actions.js";
+import { storeEditorTextActionCreator } from "../actions.js";
 import { connect } from "react-redux";
+import '../styles/Editor.scss';
 
 class Editor extends React.Component {
   render() {
@@ -9,7 +10,13 @@ class Editor extends React.Component {
         id="editor-text"
         placeholder="# Header 1"
         value={this.props.editorText}
-        rows={this.props.editorText.split('\n').length}
+        rows={this.props.editorText.split("\n").length + 1}
+        onFocus={() => {
+          let selectionStart = document.getElementById("editor-text").selectionStart;
+          let selectionEnd = document.getElementById("editor-text").selectionEnd;
+          console.log(selectionStart, selectionEnd);
+
+        }}
         onChange={() => {
           this.props.storeEditorText(
             document.getElementById("editor-text").value
@@ -19,7 +26,7 @@ class Editor extends React.Component {
       ></textarea>
     );
     return (
-      <div>
+      <div id="editor">
         {/* <h1>Editor Component</h1> */}
         {textarea}
       </div>

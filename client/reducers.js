@@ -4,7 +4,7 @@ import convertMarkdownToHTML from "./helpers.js";
 
 const initialState = {
   editorText: "",
-  previewText: "Type in the editor pane to begin...",
+  previewText: "",
   username: "",
   authToken: "",
 };
