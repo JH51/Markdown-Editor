@@ -193,14 +193,16 @@ class Toolbar extends React.Component {
           </button>
         </div>
         <div id="github-login" className="toolbar-item">
-          <button
-            onClick={() => {
-              console.log("Fetch");
-              this.props.redirectToGitHubOath();
-            }}
-          >
-            Login with GitHub
-          </button>
+          <a href="http://localhost:3000/login/oauth/github">
+            <button
+              onClick={() => {
+                console.log("Fetch");
+                this.props.redirectToGitHubOath();
+              }}
+            >
+              Login with GitHub
+            </button>
+          </a>
         </div>
       </div>
     );
