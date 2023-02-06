@@ -1,7 +1,5 @@
-//  import * as types from '../constants/actionTypes';
 import { combineReducers } from "redux";
 import convertMarkdownToHTML from "./helpers.js";
-const SERVER_URL = "http://localhost:3000";
 
 const initialState = {
   editorText: "",
@@ -15,6 +13,7 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+
     case "FETCH_README": {
       const user = document.getElementById("input-user"),
         repo = document.getElementById("input-repo"),
@@ -22,7 +21,7 @@ const reducer = (state = initialState, action) => {
         filename = document.getElementById("input-filename");
       console.log(state.reducer);
       fetch(
-        `http://localhost:3000/api?user=${user.value}&repo=${repo.value}&branch=${branch.value}&filename=${filename.value}`,
+        `${SERVER_URL}/api?user=${user.value}&repo=${repo.value}&branch=${branch.value}&filename=${filename.value}`,
         {
           method: "GET",
         }
@@ -49,7 +48,7 @@ const reducer = (state = initialState, action) => {
     }
 
     case "REDIRECT_TO_GITHUB_OAUTH": {
-      fetch("http://localhost:3000/login/oauth/github", {
+      fetch(`${SERVER_URL}/login/oauth/github`, {
         headers: {
           "Access-Control-Allow-Origin": "*",
         },
@@ -84,6 +83,7 @@ const reducer = (state = initialState, action) => {
 
     default:
       return state;
+
   }
 };
 

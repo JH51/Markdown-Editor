@@ -7,12 +7,11 @@ class Preview extends React.Component {
     try {
       document.getElementById('preview').innerHTML = this.props.previewText;
     }
-    catch {
-
+    catch (err) {
+      console.error(err);
     }
     return (
       <div id="preview">
-        {/* <h1>Preview Component</h1> */}
         <h1>Header 1</h1>
         Type in the editor pane to begin
         <textarea id="preview-text" value={this.props.previewText}>

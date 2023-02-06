@@ -10,10 +10,6 @@ class Editor extends React.Component {
         id="editor-text"
         placeholder="# Header 1"
         value={this.props.editorText}
-        // rows={
-        //   this.props.editorText.split("\n").length +
-        //   Math.floor(this.props.editorText.split("\n").length / 2)
-        // }
         style={{
           height: document.getElementById("editor-text")
             ? document.getElementById("editor-text").scrollHeight + "px"
@@ -39,7 +35,6 @@ class Editor extends React.Component {
     );
     return (
       <div id="editor">
-        {/* <h1>Editor Component</h1> */}
         {textarea}
       </div>
     );
