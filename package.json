@@ -1,13 +1,13 @@
 {
-  "name": "new-project",
-  "version": "1.0.0",
+  "name": "markdown_editor",
+  "version": "1.1.0",
   "description": "",
   "main": "main.js",
   "mode": "production",
   "scripts": {
-    "start": "node server/express.js",
+    "start": "node ./src/server/express.js",
     "build": "NODE_ENV=production webpack",
-    "dev": "NODE_ENV=development webpack serve --open & NODE_ENV=development nodemon server/express.js"
+    "dev": "NODE_ENV=development webpack serve --open & NODE_ENV=development nodemon ./src/server/express.js"
   },
   "keywords": [],
   "author": "Jonathan Huang https://github.com/JH51",

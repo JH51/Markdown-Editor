@@ -8,16 +8,19 @@ module.exports = {
     //   "/": "http://localhost:3000",
     // },
     static: {
-      directory: path.resolve(__dirname, "./build"),
+      directory: path.resolve(__dirname, "build"),
     },
     port: 8080,
     open: true,
+    hot: true,
+    compress: true,
+    historyApiFallback: true,
   },
-  entry: path.resolve(__dirname, "./client/main.js"),
+  entry: path.resolve(__dirname, "./src/client/main.js"),
   output: {
-    path: path.resolve(__dirname, "./build"),
+    path: path.resolve(__dirname, "build"),
     filename: "bundle.js",
-    publicPath: "/build",
+    publicPath: "/",
   },
   module: {
     rules: [
@@ -39,7 +42,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      filename: "bundle.html",
+      filename: "index.html",
       template: path.join(__dirname, "./template.html"),
     }),
   ],

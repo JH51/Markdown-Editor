@@ -12,9 +12,9 @@ const PORT = 3000;
 const SERVER_URL = "http://127.0.0.1:" + PORT;
 
 app.get("/", (req, res) => {
-  return res.status(200).sendFile(path.join(__dirname, "../build/bundle.html"));
+  return res.status(200).sendFile(path.join(__dirname, "../../build/bundle.html"));
 });
-app.use("/build", express.static(path.join(__dirname, "../build")));
+app.use("/build", express.static(path.join(__dirname, "../../build")));
 app.use("/api", apiRouter);
 app.get("/login/oauth/github", (req, res) => {
   res.header("Access-Control-Allow-Origin", "*")
