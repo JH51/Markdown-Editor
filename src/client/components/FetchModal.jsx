@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { fetchReadMeActionCreator, updateQueriesActionCreator } from "../actions.js";
 import "../styles/FetchWindow.scss";
 
-class FetchWindow extends React.Component {
+class FetchModal extends React.Component {
 
   render() {
     return (
@@ -82,4 +82,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(FetchWindow);
+export default connect(null, mapDispatchToProps)(FetchModal);

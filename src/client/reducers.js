@@ -1,7 +1,5 @@
-//  import * as types from '../constants/actionTypes';
 import { combineReducers } from "redux";
 import convertMarkdownToHTML from "./helpers.js";
-const SERVER_URL = "http://localhost:3000";
 
 const initialState = {
   editorText: "",
@@ -15,6 +13,7 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+
     case "FETCH_README": {
       const user = document.getElementById("input-user"),
         repo = document.getElementById("input-repo"),
@@ -84,6 +83,7 @@ const reducer = (state = initialState, action) => {
 
     default:
       return state;
+      
   }
 };
 
