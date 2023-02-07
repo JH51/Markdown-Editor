@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { fetchReadMeActionCreator, updateQueriesActionCreator } from "../actions.js";
-import "../styles/FetchWindow.scss";
+import "../styles/FetchModal.scss";
 
 class FetchModal extends React.Component {
 
