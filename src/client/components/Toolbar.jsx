@@ -10,6 +10,11 @@ import "../styles/Toolbar.scss";
 const fileSaver = require("file-saver");
 
 class Toolbar extends React.Component {
+
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
       <div id="toolbar">
@@ -161,8 +166,7 @@ class Toolbar extends React.Component {
             title="Download README.md"
             onClick={() => {
               const editorTextArea = document.getElementById("editor-text");
-              console.log("Downloading README.md");
-              fileSaver.saveAs(new Blob([editorTextArea.value]), "README.md");
+              fileSaver.saveAs(new Blob([editorTextArea.value]), `${this.props.filename}`);
             }}
           >
             <u>&darr;</u>
@@ -175,11 +179,6 @@ class Toolbar extends React.Component {
               const overlay = document.getElementById("fetch-overlay");
               overlay.style.visibility = "visible";
               overlay.style.opacity = 1;
-              // console.log(document.getElementById("fetch-overlay"));
-              // console.log("Fetch");
-              // this.props.fetchReadMe();
-              // setTimeout(this.props.storeEditorText, 500);
-              // setTimeout(this.props.updateHeader, 500);
             }}
           >
             <svg

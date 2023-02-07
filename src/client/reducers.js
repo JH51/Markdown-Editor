@@ -8,7 +8,7 @@ const initialState = {
   user: "",
   repo: "",
   branch: "",
-  filename: "README.md",
+  filename: "README.md"
 };
 
 const reducer = (state = initialState, action) => {
@@ -78,6 +78,13 @@ const reducer = (state = initialState, action) => {
         repo: action.payload.repo,
         branch: action.payload.branch,
         filename: action.payload.filename,
+      };
+    }
+
+    case "UPDATE_FILENAME": {
+      return {
+        ...state, 
+        filename: action.payload,
       };
     }
 

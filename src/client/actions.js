@@ -1,3 +1,10 @@
+export function updateFilenameActionCreator(payload) {
+  return {
+    type: "UPDATE_FILENAME",
+    payload: payload,
+  }
+}
+
 export function fetchReadMeActionCreator() {
   return {
     type: "FETCH_README",
