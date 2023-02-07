@@ -1,10 +1,8 @@
 import React from "react";
-import Toolbar from "./components/Toolbar.jsx";
 import FetchModal from "./components/FetchModal.jsx";
 import HeaderContainer from "./containers/HeaderContainer.jsx";
 import EditorContainer from "./containers/EditorContainer.jsx";
 import ToolbarContainer from "./containers/ToolbarContainer.jsx";
-import { connect } from "react-redux";
 import './styles/App.scss';
 
 
