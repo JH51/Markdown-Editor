@@ -9,7 +9,7 @@ class Editor extends React.Component {
       <textarea
         id="editor-text"
         placeholder="# Header 1"
-        value={this.props.editorText}
+        value={this.props.editorText.present}
         style={{
           height: document.getElementById("editor-text")
             ? document.getElementById("editor-text").scrollHeight + "px"
@@ -53,4 +53,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(Editor);
+export default connect(mapStateToProps, mapDispatchToProps)(Editor);

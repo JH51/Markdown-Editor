@@ -2,13 +2,13 @@ import { combineReducers } from "redux";
 import convertMarkdownToHTML from "./helpers.js";
 
 const initialState = {
-  editorText: "",
+  editorText: {past: [], present: "", future: []},
   previewText: "",
   authToken: "",
   user: "",
   repo: "",
   branch: "",
-  filename: "README.md"
+  filename: "README.md",
 };
 
 const reducer = (state = initialState, action) => {
@@ -37,7 +37,7 @@ const reducer = (state = initialState, action) => {
             // repo: responseJson.repo,
             // branch: responseJson.branch,
             // filename: responseJson.filename,
-            editorText: responseJson.mdText,
+            editorText: {past: [], present: responseJson.mdText, future: []},
             previewText: convertMarkdownToHTML(responseJson.mdText),
           };
         })
@@ -59,9 +59,13 @@ const reducer = (state = initialState, action) => {
     }
 
     case "STORE_EDITOR_TEXT": {
+      const copyOfEditorText = {...state.editorText};
+      copyOfEditorText.future = [];
+      copyOfEditorText.past.push(copyOfEditorText.present);
+      copyOfEditorText.present = action.payload
       return {
         ...state,
-        editorText: action.payload,
+        editorText: copyOfEditorText,
         previewText: convertMarkdownToHTML(action.payload),
       };
     }
