@@ -92,6 +92,28 @@ const reducer = (state = initialState, action) => {
       };
     }
 
+    case "UNDO_EDITOR_TEXT": {
+      const copyOfEditorText = {...state.editorText};
+      copyOfEditorText.future.push(copyOfEditorText.present)
+      copyOfEditorText.present = copyOfEditorText.past.pop();
+      return {
+        ...state,
+        editorText: copyOfEditorText,
+        previewText: convertMarkdownToHTML(copyOfEditorText.present),
+      };
+    }
+
+    case "REDO_EDITOR_TEXT": {
+      const copyOfEditorText = {...state.editorText};
+      copyOfEditorText.past.push(copyOfEditorText.present)
+      copyOfEditorText.present = copyOfEditorText.future.pop();
+      return {
+        ...state,
+        editorText: copyOfEditorText,
+        previewText: convertMarkdownToHTML(copyOfEditorText.present),
+      };
+    }
+
     default:
       return state;
 

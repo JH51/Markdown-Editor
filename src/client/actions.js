@@ -5,6 +5,18 @@ export function updateFilenameActionCreator(payload) {
   }
 }
 
+export function undoEditorTextActionCreator() {
+  return {
+    type: "UNDO_EDITOR_TEXT",
+  }
+}
+
+export function redoEditorTextActionCreator() {
+  return {
+    type: "REDO_EDITOR_TEXT",
+  }
+}
+
 export function fetchReadMeActionCreator() {
   return {
     type: "FETCH_README",

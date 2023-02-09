@@ -5,6 +5,8 @@ import {
   storeEditorTextActionCreator,
   updateHeaderActionCreator,
   redirectToGitHubOauthActionCreator,
+  undoEditorTextActionCreator,
+  redoEditorTextActionCreator,
 } from "../actions.js";
 import "../styles/Toolbar.scss";
 const fileSaver = require("file-saver");
@@ -22,10 +24,32 @@ class Toolbar extends React.Component {
           <button title="Open File">&#128194;</button>
         </div>
         <div className="toolbar-item">
-          <button title="Undo">&#8617;</button>
+          <button 
+            title="Undo"
+            onClick={() => {
+              const editorTextArea = document.getElementById("editor-text");
+              if (this.props.editorText.past != []) {
+                this.props.undoEditorText();
+              }
+              editorTextArea.focus();
+            }}
+          >
+            &#8617;
+          </button>
         </div>
         <div className="toolbar-item">
-          <button title="Redo">&#8618;</button>
+          <button 
+            title="Redo"
+            onClick={() => {
+              const editorTextArea = document.getElementById("editor-text");
+              if (this.props.editorText.future != []) {
+                this.props.redoEditorText();
+              }
+              editorTextArea.focus();
+            }}
+          >
+            &#8618;
+          </button>
         </div>
         <div className="toolbar-item">
           <button
@@ -212,6 +236,7 @@ const mapStateToProps = (state) => {
     repo: state.reducer.repo,
     branch: state.reducer.branch,
     filename: state.reducer.filename,
+    editorText: state.reducer.editorText,
   };
 };
 
@@ -221,6 +246,8 @@ const mapDispatchToProps = (dispatch) => {
     redirectToGitHubOath: () => dispatch(redirectToGitHubOauthActionCreator()),
     storeEditorText: () => dispatch(storeEditorTextActionCreator()),
     updateHeader: () => dispatch(updateHeaderActionCreator()),
+    undoEditorText: () => dispatch(undoEditorTextActionCreator()),
+    redoEditorText: () => dispatch(redoEditorTextActionCreator()),
   };
 };
 
