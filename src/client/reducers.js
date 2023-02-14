@@ -2,13 +2,13 @@ import { combineReducers } from "redux";
 import convertMarkdownToHTML from "./helpers.js";
 
 const initialState = {
-  editorText: "",
+  editorText: {past: [], present: "", future: []},
   previewText: "",
   authToken: "",
   user: "",
   repo: "",
   branch: "",
-  filename: "README.md"
+  filename: "README.md",
 };
 
 const reducer = (state = initialState, action) => {
@@ -37,7 +37,7 @@ const reducer = (state = initialState, action) => {
             // repo: responseJson.repo,
             // branch: responseJson.branch,
             // filename: responseJson.filename,
-            editorText: responseJson.mdText,
+            editorText: {past: [""], present: responseJson.mdText, future: []},
             previewText: convertMarkdownToHTML(responseJson.mdText),
           };
         })
@@ -59,10 +59,23 @@ const reducer = (state = initialState, action) => {
     }
 
     case "STORE_EDITOR_TEXT": {
+      const copyOfEditorText = {...state.editorText};
+      copyOfEditorText.present = action.payload
       return {
         ...state,
-        editorText: action.payload,
+        editorText: copyOfEditorText,
         previewText: convertMarkdownToHTML(action.payload),
+      };
+    }
+
+    case "UPDATE_UNDO_STACK": {
+      const copyOfEditorText = {...state.editorText};
+      copyOfEditorText.past.push(state.editorText.present);
+      copyOfEditorText.future = [];
+      
+      return {
+        ...state,
+        editorText: copyOfEditorText,
       };
     }
 
@@ -85,6 +98,28 @@ const reducer = (state = initialState, action) => {
       return {
         ...state, 
         filename: action.payload,
+      };
+    }
+
+    case "UNDO_EDITOR_TEXT": {
+      const copyOfEditorText = {...state.editorText};
+      copyOfEditorText.future.push(copyOfEditorText.present)
+      copyOfEditorText.present = copyOfEditorText.past.pop();
+      return {
+        ...state,
+        editorText: copyOfEditorText,
+        previewText: convertMarkdownToHTML(copyOfEditorText.present),
+      };
+    }
+
+    case "REDO_EDITOR_TEXT": {
+      const copyOfEditorText = {...state.editorText};
+      copyOfEditorText.past.push(copyOfEditorText.present)
+      copyOfEditorText.present = copyOfEditorText.future.pop();
+      return {
+        ...state,
+        editorText: copyOfEditorText,
+        previewText: convertMarkdownToHTML(copyOfEditorText.present),
       };
     }
 

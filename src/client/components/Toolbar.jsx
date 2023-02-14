@@ -5,6 +5,9 @@ import {
   storeEditorTextActionCreator,
   updateHeaderActionCreator,
   redirectToGitHubOauthActionCreator,
+  undoEditorTextActionCreator,
+  redoEditorTextActionCreator,
+  updateUndoStackActionCreator
 } from "../actions.js";
 import "../styles/Toolbar.scss";
 const fileSaver = require("file-saver");
@@ -22,10 +25,32 @@ class Toolbar extends React.Component {
           <button title="Open File">&#128194;</button>
         </div>
         <div className="toolbar-item">
-          <button title="Undo">&#8617;</button>
+          <button 
+            title="Undo"
+            onClick={() => {
+              const editorTextArea = document.getElementById("editor-text");
+              if (this.props.editorText.past.length > 0) {
+                this.props.undoEditorText();
+              }
+              editorTextArea.focus();
+            }}
+          >
+            &#8617;
+          </button>
         </div>
         <div className="toolbar-item">
-          <button title="Redo">&#8618;</button>
+          <button 
+            title="Redo"
+            onClick={() => {
+              const editorTextArea = document.getElementById("editor-text");
+              if (this.props.editorText.future.length > 0) {
+                this.props.redoEditorText();
+              }
+              editorTextArea.focus();
+            }}
+          >
+            &#8618;
+          </button>
         </div>
         <div className="toolbar-item">
           <button
@@ -33,6 +58,7 @@ class Toolbar extends React.Component {
             onClick={() => {
               const editorTextArea = document.getElementById("editor-text");
               editorTextArea.value += "** **";
+              this.props.updateUndoStack()
               this.props.storeEditorText();
               editorTextArea.focus();
               editorTextArea.setSelectionRange(
@@ -50,6 +76,7 @@ class Toolbar extends React.Component {
             onClick={() => {
               const editorTextArea = document.getElementById("editor-text");
               editorTextArea.value += "* *";
+              this.props.updateUndoStack()
               this.props.storeEditorText();
               editorTextArea.focus();
               editorTextArea.setSelectionRange(
@@ -66,10 +93,14 @@ class Toolbar extends React.Component {
             title="Strikethrough"
             onClick={() => {
               const editorTextArea = document.getElementById("editor-text");
-              editorTextArea.value += "~~~~";
+              editorTextArea.value += "~~ ~~";
+              this.props.updateUndoStack()
               this.props.storeEditorText();
               editorTextArea.focus();
-              editorTextArea.selectionEnd -= 2;
+              editorTextArea.setSelectionRange(
+                editorTextArea.selectionStart - 3,
+                editorTextArea.selectionEnd - 2
+              );
             }}
           >
             <strike>S</strike>
@@ -81,6 +112,7 @@ class Toolbar extends React.Component {
             onClick={() => {
               const editorTextArea = document.getElementById("editor-text");
               editorTextArea.value += ">  ";
+              this.props.updateUndoStack()
               this.props.storeEditorText();
               editorTextArea.focus();
               editorTextArea.setSelectionRange(
@@ -101,6 +133,7 @@ class Toolbar extends React.Component {
             onClick={() => {
               const editorTextArea = document.getElementById("editor-text");
               editorTextArea.value += "\n*  ";
+              this.props.updateUndoStack()
               this.props.storeEditorText();
               editorTextArea.focus();
               editorTextArea.setSelectionRange(
@@ -118,6 +151,7 @@ class Toolbar extends React.Component {
             onClick={() => {
               const editorTextArea = document.getElementById("editor-text");
               editorTextArea.value += "\n- [ ]  ";
+              this.props.updateUndoStack()
               this.props.storeEditorText();
               editorTextArea.focus();
               editorTextArea.setSelectionRange(
@@ -135,6 +169,7 @@ class Toolbar extends React.Component {
             onClick={() => {
               const editorTextArea = document.getElementById("editor-text");
               editorTextArea.value += "#";
+              this.props.updateUndoStack()
               this.props.storeEditorText();
               editorTextArea.focus();
             }}
@@ -150,6 +185,7 @@ class Toolbar extends React.Component {
             onClick={() => {
               const editorTextArea = document.getElementById("editor-text");
               editorTextArea.value += "` `";
+              this.props.updateUndoStack()
               this.props.storeEditorText();
               editorTextArea.focus();
               editorTextArea.setSelectionRange(
@@ -212,6 +248,7 @@ const mapStateToProps = (state) => {
     repo: state.reducer.repo,
     branch: state.reducer.branch,
     filename: state.reducer.filename,
+    editorText: state.reducer.editorText,
   };
 };
 
@@ -221,6 +258,9 @@ const mapDispatchToProps = (dispatch) => {
     redirectToGitHubOath: () => dispatch(redirectToGitHubOauthActionCreator()),
     storeEditorText: () => dispatch(storeEditorTextActionCreator()),
     updateHeader: () => dispatch(updateHeaderActionCreator()),
+    undoEditorText: () => dispatch(undoEditorTextActionCreator()),
+    redoEditorText: () => dispatch(redoEditorTextActionCreator()),
+    updateUndoStack: () => dispatch(updateUndoStackActionCreator()),
   };
 };
 

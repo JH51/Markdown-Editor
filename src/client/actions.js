@@ -5,6 +5,18 @@ export function updateFilenameActionCreator(payload) {
   }
 }
 
+export function undoEditorTextActionCreator() {
+  return {
+    type: "UNDO_EDITOR_TEXT",
+  }
+}
+
+export function redoEditorTextActionCreator() {
+  return {
+    type: "REDO_EDITOR_TEXT",
+  }
+}
+
 export function fetchReadMeActionCreator() {
   return {
     type: "FETCH_README",
@@ -21,6 +33,14 @@ export function storeEditorTextActionCreator() {
   const textArea = document.getElementById("editor-text");
   return {
     type: "STORE_EDITOR_TEXT",
+    payload: textArea.value,
+  };
+}
+
+export function updateUndoStackActionCreator() {
+  const textArea = document.getElementById("editor-text");
+  return {
+    type: "UPDATE_UNDO_STACK",
     payload: textArea.value,
   };
 }
