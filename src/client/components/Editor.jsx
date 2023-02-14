@@ -5,14 +5,10 @@ import "../styles/Editor.scss";
 
 class Editor extends React.Component {
 
-  // timer = setTimeout(() => {
-  //   this.props.updateUndoStack()
-  //   console.table(this.props.editorText)
-  // }, 1000)
-
   constructor() {
     super();
     this.timerActive = false;
+    this.timerId = null;
   }
 
   render() {
@@ -34,33 +30,21 @@ class Editor extends React.Component {
           console.log(selectionStart, selectionEnd);
         }}
         onChange={() => {
+          // Clear any active timer
+          clearTimeout(this.timerId);
           // Once user starts typing, update present and past
           if (! this.timerActive) this.props.updateUndoStack();
           this.props.storeEditorText();
           this.timerActive = true;
           // Start a timer that disables further updating
-          setTimeout(() => {
+          this.timerId = setTimeout(() => {
             this.timerActive = false;
           }, 1000)
-
-          // this.timer = setTimeout(() => {
-          //   this.props.updateUndoStack()
-          //   console.table(this.props.editorText)
-          // }, 1000)
-          // clearTimeout(this.timer)
-          // this.props.storeEditorText();
-          // this.timer = setTimeout(() => {
-          //   this.props.updateUndoStack()
-          //   console.table(this.props.editorText)
-          // }, 1000)
           this.style={
             height: document.getElementById("editor-text")
               ? document.getElementById("editor-text").scrollHeight + "px"
               : "auto",
-          }
-          
-
-          
+          }      
         }}
         autoFocus={true}
       ></textarea>
