@@ -37,6 +37,14 @@ export function storeEditorTextActionCreator() {
   };
 }
 
+export function updateUndoStackActionCreator() {
+  const textArea = document.getElementById("editor-text");
+  return {
+    type: "UPDATE_UNDO_STACK",
+    payload: textArea.value,
+  };
+}
+
 export function updateQueriesActionCreator() {
   const user = document.getElementById("input-user"),
     repo = document.getElementById("input-repo"),

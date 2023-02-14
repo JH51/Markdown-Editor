@@ -37,7 +37,7 @@ const reducer = (state = initialState, action) => {
             // repo: responseJson.repo,
             // branch: responseJson.branch,
             // filename: responseJson.filename,
-            editorText: {past: [], present: responseJson.mdText, future: []},
+            editorText: {past: [""], present: responseJson.mdText, future: []},
             previewText: convertMarkdownToHTML(responseJson.mdText),
           };
         })
@@ -60,13 +60,22 @@ const reducer = (state = initialState, action) => {
 
     case "STORE_EDITOR_TEXT": {
       const copyOfEditorText = {...state.editorText};
-      copyOfEditorText.future = [];
-      copyOfEditorText.past.push(copyOfEditorText.present);
       copyOfEditorText.present = action.payload
       return {
         ...state,
         editorText: copyOfEditorText,
         previewText: convertMarkdownToHTML(action.payload),
+      };
+    }
+
+    case "UPDATE_UNDO_STACK": {
+      const copyOfEditorText = {...state.editorText};
+      copyOfEditorText.past.push(state.editorText.present);
+      copyOfEditorText.future = [];
+      
+      return {
+        ...state,
+        editorText: copyOfEditorText,
       };
     }
 
